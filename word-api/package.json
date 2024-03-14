@@ -2,6 +2,7 @@
   "name": "word-api",
   "version": "0.1.0",
   "private": true,
+  "author": "GreatJiang",
   "scripts": {
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
