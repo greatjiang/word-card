@@ -53,12 +53,17 @@ function addPage() {
     <button class="add-new" @click="addPage">新增单词</button>
     <div class="card-wrap">
       <ul>
-        <template v-for="(item, index) in wordList" :key="item + index">
-          <li v-if="index === curWordIndex">
-            <div @click="check(index)" v-if="!checkFlag">{{ item.word }}</div>
+        <template v-for="(item, index) in wordList">
+          <li v-if="index === curWordIndex" :key="item + index">
+            <div @click="check(index)" v-if="!checkFlag">
+              <div class="word-item">
+                {{ item.word }}
+              </div>
+              <div class="phonetic-item">
+                {{ decodeURIComponent(item.phonetic) }}
+              </div>
+            </div>
             <div class="word-definition" @click="check(index)" v-else>
-              {{ decodeURIComponent(item.phonetic) }}
-              <br />
               {{ decodeURIComponent(item.meaning) }}
             </div>
           </li>
@@ -83,7 +88,7 @@ li {
 .main {
   width: 100vw;
   height: 100vh;
-  background: #9bd08f;
+  // background: #9bd08f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,13 +97,13 @@ li {
 .card-wrap {
   width: 320px;
   height: 180px;
-  background: hsl(48, 82%, 87%);
+  background-color: #fff;
+  border-radius: 5px;
   position: relative;
 
   ul {
     width: 100%;
     height: 100%;
-    // overflow: hidden;
 
     li {
       width: 100%;
@@ -106,20 +111,17 @@ li {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #dfd1d1;
 
       div {
-        // width: 160px;
-        // height: 90px;
-        // line-height: 90px;
         text-align: center;
         font-size: 30px;
         font-weight: 500;
-        color: black;
+        color: #4a5b66;
 
         &.word-definition {
-          line-height: 30px;
+          line-height: 22px;
           font-size: 20px;
+          padding: 0 2px;
         }
       }
     }
@@ -134,7 +136,7 @@ li {
     height: 60px;
     line-height: 60px;
     text-align: center;
-    background-color: #6a9fa5;
+    background-color: #4a5b66;
     color: aliceblue;
     font-size: 16px;
     &.grayed {
@@ -150,10 +152,15 @@ li {
   line-height: 90px;
   text-align: center;
   font-size: 20px;
-  background: #76abae;
-  color: #31363f;
+  border-radius: 5px;
+  background: #fff;
+  color: #4a5b66;
   top: 0;
   left: 0;
   border: 0;
+}
+
+div.phonetic-item {
+  font-size: 20px !important;
 }
 </style>
