@@ -1,5 +1,6 @@
 <template>
   <div class="add-container">
+    <button class="add-back" @click="goBack">返回</button>
     <div class="add-item">
       <label for="word">单词</label>
       <input autocomplete="off" type="text" name="word" id="word" v-model="word" />
@@ -12,13 +13,19 @@
       <label for="meaning">词义</label>
       <textarea id="meaning" name="meaning" v-model="meaning" rows="5" cols="33"></textarea>
     </div>
-    <button class="add-word" @click="addWord">添加</button>
+    <div class="add-item">
+      <label for="add-button"></label>
+      <button id="add-button" class="add-word" @click="addWord">添加</button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { getCurrentInstance, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
 const { proxy } = getCurrentInstance()
+const router = useRouter()
 
 const word = ref('')
 const phonetic = ref('')
@@ -40,6 +47,10 @@ async function addWord() {
   })
 
   console.log(data)
+}
+
+function goBack() {
+  router.go(-1)
 }
 </script>
 
@@ -93,5 +104,20 @@ async function addWord() {
   background-color: #4a5b66;
   color: #f5f7fa;
   border-radius: 5px;
+}
+
+.add-back {
+  position: absolute;
+  width: 160px;
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 5px;
+  background: #fff;
+  color: #4a5b66;
+  top: 0;
+  left: 0;
+  border: 0;
 }
 </style>

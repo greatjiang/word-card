@@ -37,10 +37,11 @@ function turnPage(type) {
 }
 
 async function getList() {
-  const { data } = await proxy.$fetch('/api/list')
+  const { data, code } = await proxy.$fetch('/api/list')
 
-  console.log(data)
-  wordList.value = data.list
+  if (code === 1) {
+    wordList.value = data.list
+  }
 }
 
 function addPage() {

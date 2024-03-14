@@ -1,6 +1,7 @@
 {
   "name": "wordcard",
   "version": "0.0.0",
+  "author": "GreatJiang",
   "private": true,
   "type": "module",
   "scripts": {
