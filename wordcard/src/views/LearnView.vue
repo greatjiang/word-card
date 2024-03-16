@@ -17,7 +17,6 @@ let curWordIndex = ref(0)
 let checkFlag = ref(false)
 
 function check(index) {
-  // alert(index + '我被点了')
   curWordIndex.value = index
   checkFlag.value = !checkFlag.value
 }
@@ -47,6 +46,12 @@ async function getList() {
 function addPage() {
   router.push(`/add`)
 }
+
+let fullFlag = ref(false)
+function radicalTrigger() {
+  console.log(fullFlag.value)
+  fullFlag.value = !fullFlag.value
+}
 </script>
 
 <template>
@@ -56,16 +61,25 @@ function addPage() {
       <ul>
         <template v-for="(item, index) in wordList">
           <li v-if="index === curWordIndex" :key="item + index">
+            <div class="word-icon" v-if="checkFlag">
+              <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">词根</span>
+              <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">例句</span>
+            </div>
             <div @click="check(index)" v-if="!checkFlag">
-              <div class="word-item">
+              <div>
                 {{ item.word }}
               </div>
-              <div class="phonetic-item">
+              <div>
                 {{ decodeURIComponent(item.phonetic) }}
               </div>
             </div>
             <div class="word-definition" @click="check(index)" v-else>
               {{ decodeURIComponent(item.meaning) }}
+
+              <div class="full-meaning" v-show="fullFlag">
+                <!-- {{ decodeURIComponent(item.meaning) }} -->
+                预留位
+              </div>
             </div>
           </li>
         </template>
@@ -112,17 +126,59 @@ li {
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       div {
         text-align: center;
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 500;
         color: #4a5b66;
 
         &.word-definition {
-          line-height: 22px;
+          max-height: 100px;
+          line-height: 26px;
           font-size: 20px;
+          padding: 0 5px;
+          overflow: scroll;
+          // box-sizing: border-box;
+          // text-overflow: ellipsis;
+          // display: -webkit-box;
+          // -webkit-line-clamp: 4; /* 限制行数 */
+          // -webkit-box-orient: vertical;
+        }
+        .full-meaning {
+          position: absolute;
+          width: 320px;
+          top: 0;
+          left: 330px;
+          line-height: 26px;
+          font-size: 20px;
+          background-color: #fff;
+          border-radius: 5px;
+          padding: 5px;
+        }
+      }
+
+      div.word-icon {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+
+        span {
+          font-size: 12px;
+          border-radius: 2px;
+          // border: 1px solid #448687;
+          background-color: #448687;
+          margin: 0 2px;
           padding: 0 2px;
+          box-sizing: border-box;
+          cursor: pointer;
+          color: #fff;
         }
       }
     }
@@ -140,6 +196,9 @@ li {
     background-color: #4a5b66;
     color: aliceblue;
     font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+
     &.grayed {
       opacity: 0.5;
     }
@@ -159,9 +218,5 @@ li {
   top: 0;
   left: 0;
   border: 0;
-}
-
-div.phonetic-item {
-  font-size: 20px !important;
 }
 </style>

@@ -40,9 +40,9 @@ async function addWord() {
   const { data } = await proxy.$fetch('/api/addWord', {
     method: 'POST',
     data: {
-      word: encodeURIComponent(word.value),
-      phonetic: encodeURIComponent(phonetic.value),
-      meaning: encodeURIComponent(meaning.value)
+      word: encodeURIComponent(word.value.trim()),
+      phonetic: encodeURIComponent(phonetic.value.trim()),
+      meaning: encodeURIComponent(meaning.value.trim())
     }
   })
 
