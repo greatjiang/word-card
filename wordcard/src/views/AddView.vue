@@ -37,7 +37,7 @@ async function addWord() {
     return
   }
 
-  const { data } = await proxy.$fetch('/api/addWord', {
+  const { code } = await proxy.$fetch('/api/addWord', {
     method: 'POST',
     data: {
       word: encodeURIComponent(word.value.trim()),
@@ -46,7 +46,7 @@ async function addWord() {
     }
   })
 
-  console.log(data)
+  console.log(code)
 }
 
 function goBack() {

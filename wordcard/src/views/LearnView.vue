@@ -49,7 +49,7 @@ function addPage() {
 
 let fullFlag = ref(false)
 function radicalTrigger() {
-  console.log(fullFlag.value)
+  // console.log(fullFlag.value)
   fullFlag.value = !fullFlag.value
 }
 </script>
@@ -64,6 +64,7 @@ function radicalTrigger() {
             <div class="word-icon" v-if="checkFlag">
               <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">词根</span>
               <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">例句</span>
+              <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">联想</span>
             </div>
             <div @click="check(index)" v-if="!checkFlag">
               <div>
