@@ -138,9 +138,9 @@ li {
           max-height: 100px;
           line-height: 26px;
           font-size: 20px;
-          padding: 0 5px;
-          overflow: scroll;
-          // box-sizing: border-box;
+          padding: 0 10px;
+          overflow-y: scroll;
+          box-sizing: border-box;
           // text-overflow: ellipsis;
           // display: -webkit-box;
           // -webkit-line-clamp: 4; /* 限制行数 */
