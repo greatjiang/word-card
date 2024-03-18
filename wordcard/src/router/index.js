@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LearnView from '../views/LearnView.vue'
-import AddView from '../views/AddView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,8 +12,12 @@ const router = createRouter({
     {
       path: '/add',
       name: 'AddView',
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AddView.vue')
+    },
+    {
+      path: '/operation',
+      name: 'WordsOperation',
+      component: () => import('../views/WordsOperation.vue')
     }
   ]
 })

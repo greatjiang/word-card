@@ -47,24 +47,37 @@ function addPage() {
   router.push(`/add`)
 }
 
+function wordsOperation() {
+  router.push(`/operation`)
+}
 let fullFlag = ref(false)
 function radicalTrigger() {
-  // console.log(fullFlag.value)
   fullFlag.value = !fullFlag.value
+}
+
+function setProficiency() {
+  alert('已标记熟知')
 }
 </script>
 
 <template>
   <section class="main">
-    <button class="add-new" @click="addPage">新增单词</button>
+    <header class="navigation-container">
+      <button class="add-new" @click="addPage">新增单词</button>
+      <button class="add-new" @click="wordsOperation">词库</button>
+    </header>
     <div class="card-wrap">
       <ul>
         <template v-for="(item, index) in wordList">
           <li v-if="index === curWordIndex" :key="item + index">
-            <div class="word-icon" v-if="checkFlag">
-              <!-- <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">词根</span> -->
-              <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">例句</span>
-              <!-- <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">联想</span> -->
+            <div class="word-icon">
+              <span class="proficiency" @click="setProficiency">熟</span>
+
+              <template v-if="checkFlag">
+                <span v-if="item.example" @mouseover="radicalTrigger" @mouseleave="radicalTrigger"
+                  >例句</span
+                >
+              </template>
             </div>
             <div @click="check(index)" v-if="!checkFlag">
               <div>
@@ -103,11 +116,11 @@ li {
 .main {
   width: 100vw;
   height: 100vh;
-  // background: #9bd08f;
   display: flex;
-  justify-content: center;
+  // justify-content: space-around;
   align-items: center;
   position: relative;
+  flex-direction: column;
 }
 .card-wrap {
   width: 320px;
@@ -115,6 +128,7 @@ li {
   background-color: #fff;
   border-radius: 5px;
   position: relative;
+  margin-top: 200px;
 
   ul {
     width: 100%;
@@ -163,7 +177,7 @@ li {
         position: absolute;
         top: 0;
         right: 10px;
-        width: 100%;
+        width: 300px;
         height: 30px;
         display: flex;
         justify-content: right;
@@ -179,6 +193,12 @@ li {
           box-sizing: border-box;
           cursor: pointer;
           color: #fff;
+
+          &.proficiency {
+            position: absolute;
+            left: 0;
+            background-color: #ef6c00;
+          }
         }
       }
     }
@@ -205,8 +225,10 @@ li {
   }
 }
 
+.navigation-container {
+  display: flex;
+}
 .add-new {
-  position: absolute;
   width: 160px;
   height: 90px;
   line-height: 90px;
@@ -215,8 +237,6 @@ li {
   border-radius: 5px;
   background: #fff;
   color: #4a5b66;
-  top: 0;
-  left: 0;
   border: 0;
 }
 </style>

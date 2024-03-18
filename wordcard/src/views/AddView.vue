@@ -15,7 +15,7 @@
     </div>
     <div class="add-item">
       <label for="example">例句</label>
-      <textarea id="meaning" name="meaning" v-model="example" rows="5" cols="33"></textarea>
+      <textarea id="example" name="example" v-model="example" rows="5" cols="33"></textarea>
     </div>
     <div class="add-item">
       <label for="add-button"></label>
