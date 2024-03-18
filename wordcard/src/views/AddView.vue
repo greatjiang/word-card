@@ -14,6 +14,10 @@
       <textarea id="meaning" name="meaning" v-model="meaning" rows="5" cols="33"></textarea>
     </div>
     <div class="add-item">
+      <label for="meaning">例句</label>
+      <textarea id="meaning" name="meaning" v-model="meaning" rows="5" cols="33"></textarea>
+    </div>
+    <div class="add-item">
       <label for="add-button"></label>
       <button id="add-button" class="add-word" @click="addWord">添加</button>
     </div>
