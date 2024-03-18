@@ -14,8 +14,8 @@
       <textarea id="meaning" name="meaning" v-model="meaning" rows="5" cols="33"></textarea>
     </div>
     <div class="add-item">
-      <label for="meaning">例句</label>
-      <textarea id="meaning" name="meaning" v-model="meaning" rows="5" cols="33"></textarea>
+      <label for="example">例句</label>
+      <textarea id="meaning" name="meaning" v-model="example" rows="5" cols="33"></textarea>
     </div>
     <div class="add-item">
       <label for="add-button"></label>
@@ -34,9 +34,10 @@ const router = useRouter()
 const word = ref('')
 const phonetic = ref('')
 const meaning = ref('')
+const example = ref('')
 
 async function addWord() {
-  if (word.value == '' || phonetic.value == '' || meaning.value == '') {
+  if (word.value == '' || phonetic.value == '' || meaning.value == '' || example.value == '') {
     alert('请完成填写项~')
     return
   }
@@ -46,7 +47,8 @@ async function addWord() {
     data: {
       word: encodeURIComponent(word.value.trim()),
       phonetic: encodeURIComponent(phonetic.value.trim()),
-      meaning: encodeURIComponent(meaning.value.trim())
+      meaning: encodeURIComponent(meaning.value.trim()),
+      example: encodeURIComponent(example.value.trim())
     }
   })
 
@@ -62,7 +64,7 @@ function goBack() {
 .add-container {
   width: 400px;
   margin: 0 auto;
-  margin-top: 100px;
+  // margin-top: 100px;
   padding: 20px;
   // background-color: #f8e496;
   background-color: #fff;

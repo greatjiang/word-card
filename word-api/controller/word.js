@@ -14,9 +14,10 @@ const addWord = (wordInfo = {}) => {
   const word = wordInfo.word
   const phonetic = wordInfo.phonetic
   const meaning = wordInfo.meaning
+  const example = wordInfo.example
 
-  const sql = `insert into words (word,phonetic,meaning)
-  values ('${word}','${phonetic}','${meaning}')
+  const sql = `insert into words (word,phonetic,meaning,example)
+  values ('${word}','${phonetic}','${meaning}','${example}')
   `
 
   return exec(sql).then(insertData => {

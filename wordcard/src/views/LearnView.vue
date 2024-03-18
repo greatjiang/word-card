@@ -62,9 +62,9 @@ function radicalTrigger() {
         <template v-for="(item, index) in wordList">
           <li v-if="index === curWordIndex" :key="item + index">
             <div class="word-icon" v-if="checkFlag">
-              <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">词根</span>
+              <!-- <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">词根</span> -->
               <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">例句</span>
-              <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">联想</span>
+              <!-- <span @mouseover="radicalTrigger" @mouseleave="radicalTrigger">联想</span> -->
             </div>
             <div @click="check(index)" v-if="!checkFlag">
               <div>
@@ -78,8 +78,7 @@ function radicalTrigger() {
               {{ decodeURIComponent(item.meaning) }}
 
               <div class="full-meaning" v-show="fullFlag">
-                <!-- {{ decodeURIComponent(item.meaning) }} -->
-                预留位
+                {{ decodeURIComponent(item.example) }}
               </div>
             </div>
           </li>
