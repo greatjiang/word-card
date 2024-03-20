@@ -18,7 +18,7 @@
         <tr v-for="(item, index) in wordsList" :key="index">
           <td>{{ item.word }}</td>
           <td>{{ decodeURIComponent(item.meaning) }}</td>
-          <td @click="operate(index)">修改</td>
+          <td @click="operate(item)">修改</td>
         </tr>
       </tbody>
     </table>
@@ -68,15 +68,40 @@ onMounted(() => {
   getList()
 })
 
-function operate(index) {
-  alert(index)
+// 单词操作
+function operate(item) {
+  showAddFlag.value = true
+
+  word.value = item.word
+  phonetic.value = decodeURIComponent(item.phonetic)
+  meaning.value = decodeURIComponent(item.meaning)
+  example.value = decodeURIComponent(item.example)
 }
 
 function goBack() {
   router.go(-1)
 }
-function confirm() {
+
+async function confirm() {
+  return
+  if (word.value == '' || phonetic.value == '' || meaning.value == '' || example.value == '') {
+    alert('请完成填写项~')
+    return
+  }
+
+  const { code } = await proxy.$fetch('/api/addWord', {
+    method: 'POST',
+    data: {
+      word: encodeURIComponent(word.value.trim()),
+      phonetic: encodeURIComponent(phonetic.value.trim()),
+      meaning: encodeURIComponent(meaning.value.trim()),
+      example: encodeURIComponent(example.value.trim())
+    }
+  })
+
+  console.log(code)
   showAddFlag.value = false
+  getList()
 }
 function cancel() {
   showAddFlag.value = false
@@ -84,6 +109,10 @@ function cancel() {
 
 function addAction() {
   showAddFlag.value = true
+  word.value = ''
+  phonetic.value = ''
+  meaning.value = ''
+  example.value = ''
 }
 //单词项
 const word = ref('')
