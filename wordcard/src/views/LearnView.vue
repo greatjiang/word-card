@@ -63,8 +63,8 @@ function setProficiency() {
 <template>
   <section class="main">
     <header class="navigation-container">
-      <button class="add-new" @click="addPage">新增单词</button>
-      <button class="add-new" @click="wordsOperation">词库</button>
+      <!-- <button class="add-new" @click="addPage">新增单词</button> -->
+      <button class="word-list" @click="wordsOperation">词库</button>
     </header>
     <div class="card-wrap">
       <ul>
@@ -118,6 +118,7 @@ li {
   height: 100vh;
   display: flex;
   // justify-content: space-around;
+  justify-content: center;
   align-items: center;
   position: relative;
   flex-direction: column;
@@ -127,8 +128,8 @@ li {
   height: 180px;
   background-color: #fff;
   border-radius: 5px;
-  position: relative;
-  margin-top: 200px;
+  // position: relative;
+  // margin-top: 200px;
 
   ul {
     width: 100%;
@@ -238,5 +239,22 @@ li {
   background: #fff;
   color: #4a5b66;
   border: 0;
+}
+
+.word-list {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  // top: 0;
+  bottom: 100px;
+  right: 0;
+  background: #fff;
+  color: #4a5b66;
+  border: 0;
+  font-size: 16px;
 }
 </style>

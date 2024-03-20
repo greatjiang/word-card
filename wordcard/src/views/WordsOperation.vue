@@ -83,25 +83,24 @@ function goBack() {
 }
 
 async function confirm() {
-  return
   if (word.value == '' || phonetic.value == '' || meaning.value == '' || example.value == '') {
     alert('请完成填写项~')
     return
   }
 
-  const { code } = await proxy.$fetch('/api/addWord', {
-    method: 'POST',
-    data: {
-      word: encodeURIComponent(word.value.trim()),
-      phonetic: encodeURIComponent(phonetic.value.trim()),
-      meaning: encodeURIComponent(meaning.value.trim()),
-      example: encodeURIComponent(example.value.trim())
-    }
-  })
+  // const { code } = await proxy.$fetch('/api/addWord', {
+  //   method: 'POST',
+  //   data: {
+  //     word: encodeURIComponent(word.value.trim()),
+  //     phonetic: encodeURIComponent(phonetic.value.trim()),
+  //     meaning: encodeURIComponent(meaning.value.trim()),
+  //     example: encodeURIComponent(example.value.trim())
+  //   }
+  // })
 
-  console.log(code)
-  showAddFlag.value = false
-  getList()
+  // console.log(code)
+  // showAddFlag.value = false
+  // getList()
 }
 function cancel() {
   showAddFlag.value = false
